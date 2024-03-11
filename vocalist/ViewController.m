@@ -99,7 +99,9 @@ float f = 1.0;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UITableViewCell *c = [[UITableViewCell alloc] init];
+    UITableViewCell *c = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (c == nil)
+        c = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     [[c textLabel] setText:[[voices objectAtIndex:[indexPath row]] name]];
     
     return c;
